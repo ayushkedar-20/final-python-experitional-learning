@@ -1,0 +1,101 @@
+
+import math
+import statistics
+
+def calculator():
+    while True:
+        print("\n===== SCIENTIFIC & ENGINEERING CALCULATOR =====")
+        print("1. Arithmetic")
+        print("2. Scientific")
+        print("3. Statistics")
+        print("4. Number System Conversion")
+        print("5. Unit Conversion")
+        print("6. Exit")
+
+        try:
+            choice = int(input("Enter choice: "))
+
+            if choice == 1:
+                a = float(input("Enter first number: "))
+                b = float(input("Enter second number: "))
+                op = input("Enter operator (+, -, *, /): ")
+
+                if op == "+":
+                    print("Result:", a + b)
+                elif op == "-":
+                    print("Result:", a - b)
+                elif op == "*":
+                    print("Result:", a * b)
+                elif op == "/":
+                    print("Result:", a / b if b != 0
+                          else "Error: Division by zero")
+                else:
+                    print("Invalid operator")
+
+            elif choice == 2:
+                x = float(input("Enter value: "))
+                print("Square Root:", math.sqrt(x)
+                      if x >= 0 else "Invalid input")
+                print("Square:", x ** 2)
+                print("Power (x^3):", x ** 3)
+                if x > 0:
+                    print("Natural Log:", math.log(x))
+                else:
+                    print("Natural Log: Undefined")
+                print("Sine (degrees):", math.sin(math.radians(x)))
+                print("Cosine (degrees):", math.cos(math.radians(x)))
+                print("Tangent (degrees):", math.tan(math.radians(x)))
+
+            elif choice == 3:
+                nums = list(map(float, input(
+                    "Enter numbers separated by spaces: ").split()))
+                if nums:
+                    print("Mean:", statistics.mean(nums))
+                    print("Median:", statistics.median(nums))
+                    try:
+                        print("Mode:", statistics.mode(nums))
+                    except statistics.StatisticsError:
+                        print("Mode: No unique mode")
+                    print("Variance:", statistics.pvariance(nums))
+                    print("Standard Deviation:", statistics.pstdev(nums))
+                else:
+                    print("Please enter at least one number")
+
+            elif choice == 4:
+                n = int(input("Enter a non-negative integer: "))
+                if n < 0:
+                    print("Invalid input")
+                else:
+                    print("Binary:", bin(n))
+                    print("Octal:", oct(n))
+                    print("Hexadecimal:", hex(n))
+
+            elif choice == 5:
+                print("1. Kilometers to Miles")
+                print("2. Celsius to Fahrenheit")
+                print("3. Kilograms to Pounds")
+                unit = int(input("Choose conversion: "))
+                value = float(input("Enter value: "))
+
+                if unit == 1:
+                    print("Miles:", value * 0.621371)
+                elif unit == 2:
+                    print("Fahrenheit:", value * 9 / 5 + 32)
+                elif unit == 3:
+                    print("Pounds:", value * 2.20462)
+                else:
+                    print("Invalid conversion choice")
+
+            elif choice == 6:
+                print("===== PROGRAM ENDED =====")
+                break
+
+            else:
+                print("Invalid choice")
+
+        except (ValueError, OverflowError) as e:
+            print("Invalid input:", e)
+        except (ZeroDivisionError, ValueError) as e:
+            print("Calculation error:", e)
+
+calculator()
