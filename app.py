@@ -1,5 +1,4 @@
-
-         import streamlit as st
+import streamlit as st
 import math
 import statistics
 
@@ -25,7 +24,6 @@ if section == "Arithmetic & Scientific":
         expr = st.text_input("Enter mathematical expression:", "25 * 4 + 10")
         if st.button("Calculate"):
             try:
-                # Safe evaluation with math module enabled
                 result = eval(expr, {"__builtins__": None}, {"math": math})
                 st.success(f"**Result:** {result}")
             except Exception as e:
@@ -80,7 +78,7 @@ elif section == "Engineering Calculations":
             i = st.number_input("Current (I in Amps):", value=2.0)
             r = st.number_input("Resistance (R in Ohms):", value=5.0)
             if st.button("Calculate Voltage"):
-                st.success(f"Voltage = {i * R if 'R' in locals() else i * r} Volts")
+                st.success(f"Voltage = {i * r} Volts")
         elif sub_calc == "Current (I)":
             v = st.number_input("Voltage (V in Volts):", value=10.0)
             r = st.number_input("Resistance (R in Ohms):", value=5.0)
